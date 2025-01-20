@@ -11,7 +11,7 @@ public class RentalWebService {
 
     @GetMapping("/bonjour")
     public String sayHello(){
-        return "Bonjour !";
+        return "Bonjour Madame !";
     }
 
     @PutMapping(value = "/cars/{plateNumber}") public void rent(
