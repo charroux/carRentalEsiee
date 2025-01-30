@@ -79,3 +79,45 @@ Publier l'image :
 ```
 docker push votreIdDocherHub/rental:1      
 ```
+
+### Installer Minikube
+
+https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download
+
+### Démarrer Minikube
+```
+minikube start --driver=docker      
+```
+
+Combien de noeuds dans le cluster?
+```
+kubectl get nodes      
+```
+Désployer votre image Docker :
+```
+kubectl create deployment rentalservice --image=charroux/rentalservice:1      
+```
+Attention d'utiliser votre image.
+
+Vérifier que le procesus fonctionne bien :
+```
+kubectl get pods      
+```
+Scale :
+```
+kubectl scale --replicas=2 deployment/rentalservice          
+```     
+
+Tuer un pod pour constater son redémarrage:
+```
+kubectl delete pod rentalservice-5b746d6f65-t5m8v               
+```    
+Ajouter un load balancer :
+```
+kubectl expose deployment rentalservice --type=LoadBalancer              
+```    
+Récupérer l'adresse du service :
+```
+minikube service rentalservice --url                      
+```    
+
