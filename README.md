@@ -173,6 +173,11 @@ Check the configuration at 53: https://github.com/charroux/carRentalEsiee/blob/m
 
 Check also where the Kubernetes service is registered in the gataway at line 72.
 
+Apply again the config:
+```
+kubectl apply -f deployment.yml      
+```
+
 Then get the address of the gateway:
 ```
 kubectl -n istio-system port-forward deployment/istio-ingressgateway 31380:8080  
