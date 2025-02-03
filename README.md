@@ -132,5 +132,51 @@ Voir le fichier : https://github.com/charroux/carRentalEsiee/blob/main/deploymen
 ### Inpecter le cluster via le dashboard
 
 ```
-**minikube dashboard
-```    
+minikube dashboard
+```
+
+### Install Istio
+https://istio.io/latest/docs/setup/getting-started/
+
+Download Istio (take care at the version 1.17 here).
+
+```
+cd istio-1.17.0    
+export PATH=$PWD/bin:$PATH    
+istioctl install --set profile=demo -y
+cd ..   
+```
+Enable auto-injection of the Istio side-cars when the pods are started:
+```
+kubectl label namespace default istio-injection=enabled
+```
+Install the Istio addons (Kiali, Prometheus, Jaeger, Grafana):
+```
+kubectl apply -f samples/addons
+```
+## 
+Enable auto-injection of the Istio side-cars when the pods are started:
+```
+kubectl label namespace default istio-injection=enabled
+```
+
+Configure Docker so that it uses the Kubernetes cluster:
+```
+minikube docker-env
+eval $(minikube -p minikube docker-env)
+eval $(minikube docker-env)  
+```
+
+### Kubernetes Gateway
+
+Check the configuration at 53: https://github.com/charroux/carRentalEsiee/blob/main/deployment.yml
+
+Check also where the Kubernetes service is registered in the gataway at line 72.
+
+Then get the address of the gateway:
+```
+kubectl -n istio-system port-forward deployment/istio-ingressgateway 31380:8080  
+```
+
+and finally test in your browser:
+http://localhost:31380/rentalservice/cars
