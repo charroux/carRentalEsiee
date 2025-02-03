@@ -121,3 +121,16 @@ Récupérer l'adresse du service :
 minikube service rentalservice --url                      
 ```    
 
+### Deployer via un fichier yaml
+
+```
+kubectl apply -f deployment.yml                           
+```    
+
+Voir le fichier : 
+
+### Inpecter le cluster via le dashboard
+
+```
+**minikube dashboard
+```    
