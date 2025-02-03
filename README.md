@@ -127,7 +127,7 @@ minikube service rentalservice --url
 kubectl apply -f deployment.yml                           
 ```    
 
-Voir le fichier : 
+Voir le fichier : https://github.com/charroux/carRentalEsiee/blob/main/deployment.yml
 
 ### Inpecter le cluster via le dashboard
 
