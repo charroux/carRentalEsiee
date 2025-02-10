@@ -185,3 +185,34 @@ kubectl -n istio-system port-forward deployment/istio-ingressgateway 31380:8080
 
 and finally test in your browser:
 http://localhost:31380/rentalservice/cars
+
+### Service mesh
+
+Already included into Istio
+
+#### Display the Kiali dashboard
+Kiali is a console for Istio service mesh.
+```
+kubectl -n istio-system port-forward deployment/kiali 20001:20001
+```
+Launch the console: http://localhost:20001/
+
+Active again carservice:
+
+http://localhost:31380/carservice/cars
+
+Then inspect the cluster in Kiali.
+
+#### Monitoring with Graphana
+```
+kubectl -n istio-system port-forward deployment/grafana 3000:3000
+```
+http://localhost:3000/
+
+
+#### Monitoring with Jaeger
+```
+kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686
+```
+Launch the console: http://localhost:16686/
+
